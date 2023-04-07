@@ -1,0 +1,90 @@
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  border-radius: 20px;
+  padding-bottom: 20px;
+
+  .MuiButton-containedPrimary {
+    width: 100%;
+    margin-top: 32px;
+    text-transform: none;
+
+    svg {
+      // color: ;
+    }
+  }
+}
+.loginContainer {
+  background-color: #a7bcff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &__wrapper {
+    background-color: #fff;
+    padding: 30px 60px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    position: relative;
+
+    .backButton {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+    }
+    .logo {
+      color: #5d5b8d;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    .title {
+      color: #5d5b8d;
+      font-size: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      input {
+        padding: 12px;
+        border: none;
+        border-bottom: 1px solid #a7bcff;
+        width: 250px;
+        &::placeholder {
+          color: rgb(175, 175, 175);
+        }
+      }
+      button {
+        background-color: #7b96ec;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        padding: 12px;
+        cursor: pointer;
+      }
+      .fileUpload {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        svg {
+          font-size: 32px;
+          color: #7b96ec;
+        }
+      }
+    }
+    p {
+      color: #5d5b8d;
+      font-size: 12px;
+      margin-top: 0px;
+    }
+  }
+}
