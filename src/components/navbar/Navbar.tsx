@@ -1,13 +1,13 @@
 import React from "react";
-import { useAuth } from "../../providers/auth";
-import { useDispatch } from "react-redux";
-import { USER_ACTION_TYPE } from "../../_redux/UserAuthReducer";
 import { signOut } from "firebase/auth";
 import { auth } from "../../_firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const logoutHandler = () => {
     signOut(auth);
+    navigate("/");
   };
   return (
     <div className="navbar">

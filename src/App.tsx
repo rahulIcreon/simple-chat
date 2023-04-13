@@ -20,14 +20,13 @@ function App() {
 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChangedListner((user) => {
-      console.log("USER", user);
       dispatch({
         type: USER_ACTION_TYPE.SET_LOGGEDIN_USER,
         payload: user,
       });
     });
     return unsubscribe;
-  }, []);
+  });
   return (
     <div className="App">
       <BrowserRouter>
