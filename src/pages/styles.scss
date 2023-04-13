@@ -1,0 +1,95 @@
+.home {
+  background-color: #a7bcff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .container {
+    border: 1px solid #fff;
+    width: 84%;
+    height: 96%;
+    display: flex;
+    overflow: hidden;
+    .sidebar {
+      flex: 0.8;
+      background-color: #3e3c61;
+      .navbar {
+        display: flex;
+        background-color: #2f2d52;
+        padding: 10px;
+        height: 50px;
+        justify-content: space-between;
+        align-items: center;
+        color: #ddddf7;
+        .logo {
+          font-weight: bold;
+        }
+        .user {
+          display: flex;
+          gap: 10px;
+          img {
+            background-color: #ddddf7;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          button {
+            background-color: #5d5b8d;
+            color: #ddddf7;
+            border: none;
+            font-size: 10px;
+            cursor: pointer;
+          }
+        }
+      }
+      .search {
+        border-bottom: 1px solid gray;
+        .searchForm {
+          padding: 10px;
+          input {
+            background-color: transparent;
+            border: none;
+            padding: 10px;
+            color: #fff;
+            &::placeholder {
+              color: white;
+            }
+          }
+        }
+      }
+      .userChat {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        cursor: pointer;
+        &:hover {
+          background-color: #2f2d52;
+        }
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        .userChatInfo {
+          span {
+            font-size: 18px;
+            font-weight: bold;
+          }
+          p {
+            font-size: 14px;
+            color: lightgray;
+          }
+        }
+      }
+    }
+    .messageThreadsContainer {
+      flex: 2;
+      .chatInfo {
+      }
+    }
+  }
+}

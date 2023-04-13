@@ -3,18 +3,29 @@ import Register from "./pages/register/Register";
 import Login from "./pages/Login/Login";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { PAGES_TYPES } from "./Global/Routes";
+import Home from "./pages/Home";
 
 function App() {
+  const authLogin = true; // temporarily true untill logic is implemented
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={<Navigate replace to={`/${PAGES_TYPES.LOG_IN}`} />}
-          />
-          <Route path={`/${PAGES_TYPES.LOG_IN}`} element={<Login />} />
-          <Route path={`/${PAGES_TYPES.SIGN_UP}`} element={<Register />} />
+          {authLogin ? (
+            <>
+              <Route path="/" element={<Home />} />
+            </>
+          ) : (
+            <>
+              <Route
+                path="/*"
+                element={<Navigate replace to={`/${PAGES_TYPES.LOG_IN}`} />}
+              />
+              <Route path={`/${PAGES_TYPES.LOG_IN}`} element={<Login />} />
+              <Route path={`/${PAGES_TYPES.SIGN_UP}`} element={<Register />} />
+            </>
+          )}
         </Routes>
       </BrowserRouter>
     </div>
