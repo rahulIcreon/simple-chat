@@ -4,9 +4,10 @@ import Login from "./pages/Login/Login";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { PAGES_TYPES } from "./Global/Routes";
 import Home from "./pages/Home";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const authLogin = true; // temporarily true untill logic is implemented
+  const authLogin = false; // temporarily true untill logic is implemented
 
   return (
     <div className="App">
