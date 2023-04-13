@@ -1,13 +1,14 @@
 import React from "react";
 import "./style.scss";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PAGES_TYPES } from "../../Global/Routes";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, createUserDocument, storage } from "../../Global/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import { useAuth } from "../../providers/auth";
 
 interface FormData {
   displayName: string;
@@ -18,6 +19,9 @@ interface FormData {
 }
 
 const Register = () => {
+  const authentication = useAuth();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = React.useState<FormData>({
     displayName: "",
     email: "",
@@ -74,7 +78,9 @@ const Register = () => {
         phoneNumber: formData.phone,
       };
       createUserDocument(completeInfo);
+      authentication.setToken(response.user.uid);
       toast.success(`New user ${formData.displayName} created!`);
+      toast.success("Navigating to Home page, hold on!");
     } catch (error) {
       toast.error("error while creating user with email & password:");
     }

@@ -1,6 +1,8 @@
 import React from "react";
+import { useAuth } from "../../providers/auth";
 
 const Navbar = () => {
+  const authentication = useAuth();
   return (
     <div className="navbar">
       <span className="logo">Simple Chat</span>
@@ -10,7 +12,13 @@ const Navbar = () => {
           alt=""
         />
         <span>Rahul</span>
-        <button>Log out</button>
+        <button
+          onClick={() => {
+            authentication.clearToken();
+          }}
+        >
+          Log out
+        </button>
       </div>
     </div>
   );
