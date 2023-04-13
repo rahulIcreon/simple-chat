@@ -24,7 +24,7 @@ const Register = () => {
     password: "",
     avatar: "",
   });
-  console.log("formData", formData);
+
   const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value } as FormData);
@@ -34,7 +34,7 @@ const Register = () => {
     if (!imageFile) return;
     const storageRef = ref(storage, "images/rivers.jpg");
     const uploadTask = uploadBytesResumable(storageRef, imageFile[0]);
-    console.log("imageFile", imageFile);
+
     uploadTask.on(
       "state_changed",
       (snapshot) => {},
@@ -44,7 +44,6 @@ const Register = () => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setFormData({ ...formData, avatar: downloadURL });
-          console.log("downloadURL", downloadURL);
         });
       }
     );
@@ -59,10 +58,6 @@ const Register = () => {
         formData?.password
       );
 
-      const completeInfo = {
-        ...response.user,
-        displayName: formData.displayName,
-      };
       setFormData({
         displayName: formData.displayName,
         email: formData.email,
@@ -71,7 +66,12 @@ const Register = () => {
         password: formData.password,
       });
 
-      console.log("completeInfo", completeInfo);
+      const completeInfo = {
+        ...response.user,
+        displayName: formData.displayName,
+        photoURL: formData.avatar,
+      };
+
       toast.success(`New user ${formData.displayName} created!`);
     } catch (error) {
       toast.error("error while creating user with email & password:");
