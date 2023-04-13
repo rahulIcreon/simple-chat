@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {User, getAuth} from 'firebase/auth';
+import {NextOrObserver, User, getAuth, onAuthStateChanged} from 'firebase/auth';
 import { getStorage, ref } from "firebase/storage";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
@@ -39,3 +39,7 @@ export const createUserDocument = async (user: User) => {
     console.log("Something went wrong")
   }
 };
+
+export const onAuthStateChangedListner = (callback:NextOrObserver<User>)=>{
+  onAuthStateChanged(auth,callback)
+}

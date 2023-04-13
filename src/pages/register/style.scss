@@ -36,12 +36,20 @@
           color: rgb(175, 175, 175);
         }
       }
-      button {
+      .default {
         background-color: #7b96ec;
         color: #fff;
         font-weight: bold;
         border: none;
-        padding: 12px;
+        padding: 16px;
+        cursor: pointer;
+      }
+      .loading {
+        background-color: #9397a2;
+        color: #0f0202;
+        font-weight: bold;
+        border: none;
+        padding: 16px;
         cursor: pointer;
       }
       .fileUpload {

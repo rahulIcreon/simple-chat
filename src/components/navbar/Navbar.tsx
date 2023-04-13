@@ -1,8 +1,14 @@
 import React from "react";
 import { useAuth } from "../../providers/auth";
+import { useDispatch } from "react-redux";
+import { USER_ACTION_TYPE } from "../../_redux/UserAuthReducer";
+import { signOut } from "firebase/auth";
+import { auth } from "../../_firebase/firebase";
 
 const Navbar = () => {
-  const authentication = useAuth();
+  const logoutHandler = () => {
+    signOut(auth);
+  };
   return (
     <div className="navbar">
       <span className="logo">Simple Chat</span>
@@ -12,13 +18,7 @@ const Navbar = () => {
           alt=""
         />
         <span>Rahul</span>
-        <button
-          onClick={() => {
-            authentication.clearToken();
-          }}
-        >
-          Log out
-        </button>
+        <button onClick={logoutHandler}>Log out</button>
       </div>
     </div>
   );

@@ -6,15 +6,33 @@ import { PAGES_TYPES } from "./Global/Routes";
 import Home from "./pages/Home";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "./providers/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { onAuthStateChangedListner } from "./_firebase/firebase";
+import { USER_ACTION_TYPE } from "./_redux/UserAuthReducer";
+import { StoreState } from "./_redux/_Store";
 
 function App() {
   const authentication = useAuth();
+  const dispatch = useDispatch();
+  const loggedInUser = useSelector(
+    (state: StoreState) => state.userAuth.loggedInUser
+  );
 
+  React.useEffect(() => {
+    const unsubscribe = onAuthStateChangedListner((user) => {
+      console.log("USER", user);
+      dispatch({
+        type: USER_ACTION_TYPE.SET_LOGGEDIN_USER,
+        payload: user,
+      });
+    });
+    return unsubscribe;
+  }, []);
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {authentication.getToken() ? (
+          {loggedInUser ? (
             <>
               <Route path="/*" element={<Navigate replace to={"/"} />} />
               <Route path="/" element={<Home />} />

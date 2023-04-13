@@ -4,11 +4,11 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { Link, useNavigate } from "react-router-dom";
 import { PAGES_TYPES } from "../../Global/Routes";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, createUserDocument, storage } from "../../Global/firebase";
+import { auth, createUserDocument, storage } from "../../_firebase/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore";
 import { useAuth } from "../../providers/auth";
+import { CircularProgress } from "@mui/material";
 
 interface FormData {
   displayName: string;
@@ -20,8 +20,7 @@ interface FormData {
 
 const Register = () => {
   const authentication = useAuth();
-  const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [formData, setFormData] = React.useState<FormData>({
     displayName: "",
     email: "",
@@ -56,6 +55,7 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData?.email || !formData.password) return;
+    setIsLoading(true);
     try {
       const response = await createUserWithEmailAndPassword(
         auth,
@@ -81,8 +81,10 @@ const Register = () => {
       authentication.setToken(response.user.uid);
       toast.success(`New user ${formData.displayName} created!`);
       toast.success("Navigating to Home page, hold on!");
+      setIsLoading(false);
     } catch (error) {
       toast.error("error while creating user with email & password:");
+      setIsLoading(false);
     }
   };
   return (
@@ -125,7 +127,13 @@ const Register = () => {
             <AddPhotoAlternateIcon />
             <span>Add an avatar</span>
           </label>
-          <button>Sign Up</button>
+          <button className={isLoading ? "loading" : "default"} type="submit">
+            {isLoading ? (
+              <CircularProgress size={16} color="success" />
+            ) : (
+              "Sign Up"
+            )}{" "}
+          </button>
         </form>
         <p>
           You do have an account?
