@@ -4,14 +4,15 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { Link } from "react-router-dom";
 import { PAGES_TYPES } from "../../Global/Routes";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, storage } from "../../Global/firebase";
+import { auth, createUserDocument, storage } from "../../Global/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
 
 interface FormData {
   displayName: string;
   email: string;
-  phone: number;
+  phone: string;
   password: string;
   avatar: string;
 }
@@ -20,7 +21,7 @@ const Register = () => {
   const [formData, setFormData] = React.useState<FormData>({
     displayName: "",
     email: "",
-    phone: 0,
+    phone: "",
     password: "",
     avatar: "",
   });
@@ -29,7 +30,7 @@ const Register = () => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value } as FormData);
   };
-  const onAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onAvatarChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const imageFile = event.target.files;
     if (!imageFile) return;
     const storageRef = ref(storage, "images/rivers.jpg");
@@ -70,8 +71,9 @@ const Register = () => {
         ...response.user,
         displayName: formData.displayName,
         photoURL: formData.avatar,
+        phoneNumber: formData.phone,
       };
-
+      createUserDocument(completeInfo);
       toast.success(`New user ${formData.displayName} created!`);
     } catch (error) {
       toast.error("error while creating user with email & password:");
@@ -89,7 +91,7 @@ const Register = () => {
             placeholder="Display Name"
           />
           <input
-            type="number"
+            type="text"
             name="phone"
             onChange={onChangeHandle}
             placeholder="Phone"
@@ -110,7 +112,7 @@ const Register = () => {
             style={{ display: "none" }}
             type="file"
             name="avatar"
-            onChange={onAvatarChange}
+            onChange={onAvatarChangeHandle}
             id="fileUpload"
           />
           <label className="fileUpload" htmlFor="fileUpload">
@@ -120,7 +122,7 @@ const Register = () => {
           <button>Sign Up</button>
         </form>
         <p>
-          You do have an account?{" "}
+          You do have an account?
           <Link to={`/${PAGES_TYPES.LOG_IN}`}>Login</Link>
         </p>
       </div>
