@@ -1,9 +1,9 @@
 import { initializeApp } from "firebase/app";
 import {NextOrObserver, User, getAuth, onAuthStateChanged} from 'firebase/auth';
-import { getStorage, ref } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDlNWc5LbtTRfBR5peAM8ocRgEUHmebexQ",
   authDomain: "simplechat-8eab3.firebaseapp.com",
   projectId: "simplechat-8eab3",
@@ -35,8 +35,6 @@ export const createUserDocument = async (user: User) => {
     } catch (error) {
       console.log("Could not set the Document: ", error);
     }
-  }else{
-    console.log("Something went wrong")
   }
 };
 
