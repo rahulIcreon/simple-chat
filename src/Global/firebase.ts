@@ -24,6 +24,7 @@ export const createUserDocument = async (user: User) => {
   if (!userSnapshot.exists()) {
     try {
       await setDoc(userDocRef, {
+        uid,
         displayName,
         email,
         phoneNumber,

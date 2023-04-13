@@ -5,16 +5,18 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { PAGES_TYPES } from "./Global/Routes";
 import Home from "./pages/Home";
 import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "./providers/auth";
 
 function App() {
-  const authLogin = false; // temporarily true untill logic is implemented
+  const authentication = useAuth();
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {authLogin ? (
+          {authentication.getToken() ? (
             <>
+              <Route path="/*" element={<Navigate replace to={"/"} />} />
               <Route path="/" element={<Home />} />
             </>
           ) : (
