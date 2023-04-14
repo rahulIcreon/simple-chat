@@ -1,13 +1,12 @@
 import React from "react";
 import "./style.scss";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { PAGES_TYPES } from "../../Global/Routes";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, createUserDocument, storage } from "../../_firebase/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { useAuth } from "../../providers/auth";
 import { CircularProgress } from "@mui/material";
 
 interface FormData {
@@ -19,7 +18,6 @@ interface FormData {
 }
 
 const Register = () => {
-  const authentication = useAuth();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [formData, setFormData] = React.useState<FormData>({
     displayName: "",
@@ -78,7 +76,6 @@ const Register = () => {
         phoneNumber: formData.phone,
       };
       createUserDocument(completeInfo);
-      authentication.setToken(response.user.uid);
       toast.success(`New user ${formData.displayName} created!`);
       toast.success("Navigating to Home page, hold on!");
       setIsLoading(false);
