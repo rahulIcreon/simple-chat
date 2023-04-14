@@ -6,7 +6,9 @@ import NoAccountsIcon from "@mui/icons-material/NoAccounts";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 import { PAGES_TYPES } from "../../Global/Routes";
-import WithEmail from "./WithEmail";
+import EmailLogin from "./Email-login";
+import PhoneLogin from "./Phone-login";
+import GuestLogin from "./Guest-login";
 
 enum LOGIN_TYPE {
   CHOOSE,
@@ -62,22 +64,15 @@ const Login = React.memo(() => {
               </Button>
             </div>
           ) : logInType === LOGIN_TYPE.EMAIL ? (
-            <WithEmail />
+            <EmailLogin />
           ) : logInType === LOGIN_TYPE.PHONE ? (
-            <form action="">
-              <input type="number" placeholder="Phone" />
-              <input type="password" placeholder="Password" />
-              <button>Submit</button>
-            </form>
+            <PhoneLogin />
           ) : (
-            <form action="">
-              <input type="text" placeholder="Display Name" />
-              <button>Submit</button>
-            </form>
+            <GuestLogin />
           )}
         </div>
         <p>
-          Don't have an account?{" "}
+          Don't have an account?
           <Link to={`/${PAGES_TYPES.SIGN_UP}`}>Register</Link>
         </p>
       </div>

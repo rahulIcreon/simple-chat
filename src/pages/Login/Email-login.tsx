@@ -8,7 +8,7 @@ interface FormData {
   email: string;
   password: string;
 }
-const WithEmail = () => {
+const EmailLogin = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = React.useState<FormData>({
     email: "",
@@ -25,9 +25,6 @@ const WithEmail = () => {
       toast.error("Please enter valid Email & Password");
       return;
     }
-
-    console.log("email", email);
-    console.log("password", password);
     try {
       const authFirebaseUser = await signInWithEmailAndPassword(
         auth,
@@ -74,4 +71,4 @@ const WithEmail = () => {
   );
 };
 
-export default WithEmail;
+export default EmailLogin;
