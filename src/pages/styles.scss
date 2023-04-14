@@ -2,6 +2,7 @@
 
 #light {
   background-color: $light-bg;
+  color: $light-text-color;
   .home {
     .header {
       background-color: $light-chat-bg-2;
@@ -65,7 +66,7 @@
         height: 50px;
         justify-content: space-between;
         align-items: center;
-        color: #ddddf7;
+        // color: #ddddf7;
         .logo {
           font-weight: bold;
         }
