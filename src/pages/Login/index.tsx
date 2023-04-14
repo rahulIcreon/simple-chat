@@ -15,7 +15,6 @@ enum LOGIN_TYPE {
   CHOOSE,
   EMAIL,
   PHONE,
-  GUEST,
 }
 
 const Login = React.memo(() => {
