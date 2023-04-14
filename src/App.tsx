@@ -12,7 +12,6 @@ import { USER_ACTION_TYPE } from "./_redux/UserAuthReducer";
 import { StoreState } from "./_redux/_Store";
 
 function App() {
-  const authentication = useAuth();
   const dispatch = useDispatch();
   const loggedInUser = useSelector(
     (state: StoreState) => state.userAuth.loggedInUser

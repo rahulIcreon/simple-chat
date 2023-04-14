@@ -1,10 +1,21 @@
 import React from "react";
+import { signInAnonymously } from "firebase/auth";
+import { auth } from "../../_firebase/firebase";
 
 const GuestLogin = () => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    signInAnonymously(auth)
+      .then(() => {
+        console.log("anonymous signed in successfully");
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
   return (
-    <form action="">
-      <input type="text" placeholder="Display Name" />
-      <button>Submit</button>
+    <form onSubmit={onSubmit}>
+      <button>Login as Guest</button>
     </form>
   );
 };
