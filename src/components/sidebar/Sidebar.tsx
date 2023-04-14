@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <Navbar />
-      <SearchBar />
+      {/* <SearchBar /> */}
       <MessageThreadList />
     </div>
   );
