@@ -1,5 +1,41 @@
+@import "../Global/base.scss";
+
+#light {
+  background-color: $light-bg;
+  .home {
+    .header {
+      background-color: $light-chat-bg-2;
+    }
+    .container {
+      .sidebar {
+        background-color: $light-sidebar-bg;
+        .navbar {
+          .logo {
+          }
+          .user {
+            img {
+            }
+            button {
+            }
+          }
+        }
+        .search {
+          .searchForm {
+          }
+        }
+        .userChat {
+          &:hover {
+            background-color: $light-chat-hover;
+          }
+        }
+      }
+    }
+  }
+}
+#dark {
+  background-color: $dark-bg;
+}
 .home {
-  background-color: #a7bcff;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -7,19 +43,20 @@
   flex-direction: column;
   .header {
     height: 50px;
+    width: 100%;
   }
   .container {
-    border: 1px solid #fff;
-    width: 84%;
-    height: 96%;
+    width: 100%;
+    height: 100%;
     display: flex;
     overflow: hidden;
     .sidebar {
       flex: 0.8;
-      background-color: #3e3c61;
+      // background-color: #3e3c61;
       .navbar {
         display: flex;
-        background-color: #2f2d52;
+        background-color: $light-sidebar-bg;
+        border-bottom: 1px solid $light-chat-bg-2;
         padding: 10px;
         height: 50px;
         justify-content: space-between;
@@ -32,7 +69,7 @@
           display: flex;
           gap: 10px;
           img {
-            background-color: #ddddf7;
+            // background-color: #ddddf7;
             height: 40px;
             width: 40px;
             border-radius: 50%;

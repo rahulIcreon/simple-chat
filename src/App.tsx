@@ -9,9 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChangedListner } from "./_firebase/firebase";
 import { USER_ACTION_TYPE } from "./_redux/UserAuthReducer";
 import { StoreState } from "./_redux/_Store";
+import { useTheme } from "./providers/theme";
 
 function App() {
   const dispatch = useDispatch();
+  const theme = useTheme();
   const loggedInUser = useSelector(
     (state: StoreState) => state.userAuth.loggedInUser
   );
@@ -26,7 +28,7 @@ function App() {
     return unsubscribe;
   });
   return (
-    <div className="App">
+    <div className="App" id={theme.theme}>
       <BrowserRouter>
         <Routes>
           {loggedInUser ? (

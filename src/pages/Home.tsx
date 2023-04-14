@@ -4,7 +4,7 @@ import "./styles.scss";
 import MessageThreads from "../components/messageThread/MessageThread";
 import { FormControlLabel } from "@mui/material";
 import SwitchButton from "../components/themeButton/Switch";
-import { useTheme } from "../providers/theme";
+import { THEME_MODE, useTheme } from "../providers/theme";
 
 const Home = () => {
   const theme = useTheme();
@@ -14,7 +14,7 @@ const Home = () => {
       <div className="header">
         <FormControlLabel
           control={<SwitchButton sx={{ m: 1 }} defaultChecked />}
-          label="Color theme"
+          label=""
           onChange={theme.toggleTheme}
         />
       </div>
