@@ -5,7 +5,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { PAGES_TYPES } from "./Global/Routes";
 import Home from "./pages/Home";
 import "react-toastify/dist/ReactToastify.css";
-import { useAuth } from "./providers/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChangedListner } from "./_firebase/firebase";
 import { USER_ACTION_TYPE } from "./_redux/UserAuthReducer";
