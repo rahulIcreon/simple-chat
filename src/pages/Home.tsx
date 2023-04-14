@@ -12,9 +12,10 @@ const Home = () => {
   return (
     <div className="home">
       <div className="header">
+        <span> Light</span>
         <FormControlLabel
           control={<SwitchButton sx={{ m: 1 }} defaultChecked />}
-          label=""
+          label="Dark"
           onChange={theme.toggleTheme}
         />
       </div>

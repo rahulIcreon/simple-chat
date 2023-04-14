@@ -9,6 +9,8 @@ import { PAGES_TYPES } from "../../Global/Routes";
 import EmailLogin from "./Email-login";
 import PhoneLogin from "./Phone-login";
 import GuestLogin from "./Guest-login";
+import { signInAnonymously } from "firebase/auth";
+import { auth } from "../../_firebase/firebase";
 
 enum LOGIN_TYPE {
   CHOOSE,
@@ -21,6 +23,16 @@ const Login = React.memo(() => {
   const [logInType, setLogInType] = React.useState<LOGIN_TYPE>(
     LOGIN_TYPE.CHOOSE
   );
+
+  const loginAsGuest = React.useCallback(() => {
+    signInAnonymously(auth)
+      .then(() => {
+        console.log("anonymous signed in successfully");
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  }, [auth]);
 
   return (
     <>
@@ -58,17 +70,15 @@ const Login = React.memo(() => {
               <Button
                 variant="contained"
                 startIcon={<NoAccountsIcon />}
-                onClick={() => setLogInType(LOGIN_TYPE.GUEST)}
+                onClick={loginAsGuest}
               >
                 Login as Guest
               </Button>
             </div>
           ) : logInType === LOGIN_TYPE.EMAIL ? (
             <EmailLogin />
-          ) : logInType === LOGIN_TYPE.PHONE ? (
-            <PhoneLogin />
           ) : (
-            <GuestLogin />
+            <PhoneLogin />
           )}
         </div>
         <p>
