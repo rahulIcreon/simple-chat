@@ -14,7 +14,7 @@ const Home = () => {
       <div className="header">
         <FormControlLabel
           control={<SwitchButton sx={{ m: 1 }} defaultChecked />}
-          label="MUI switch"
+          label="Color theme"
           onChange={theme.toggleTheme}
         />
       </div>
