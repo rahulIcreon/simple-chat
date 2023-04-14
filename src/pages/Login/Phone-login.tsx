@@ -61,7 +61,8 @@ const PhoneLogin = React.memo(() => {
       await confirmationToken.confirm(pin);
       navigate("/");
     } catch (error) {
-      toast.error("Wrong OTP");
+      toast.error("Wrong OTP! Please try again");
+      setLoginState(LOGIN_STATE.SEND_OTP);
     }
   };
   const onPhoneInputChange = (value: any) => {
