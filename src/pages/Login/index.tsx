@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { PAGES_TYPES } from "../../Global/Routes";
 import EmailLogin from "./Email-login";
 import PhoneLogin from "./Phone-login";
-import GuestLogin from "./Guest-login";
 import { signInAnonymously } from "firebase/auth";
 import { auth } from "../../_firebase/firebase";
 
