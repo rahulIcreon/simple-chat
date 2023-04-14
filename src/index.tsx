@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { AuthProvider } from "./providers/auth";
 import { Provider } from "react-redux";
 import store from "./_redux/_Store";
+import { ThemeProvider } from "./providers/theme";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -12,9 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AuthProvider>
+      <ThemeProvider>
         <App />
-      </AuthProvider>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );
