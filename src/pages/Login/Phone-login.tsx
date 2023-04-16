@@ -20,7 +20,7 @@ const PhoneLogin = React.memo(() => {
   const PIN_LENGTH = 6;
   const navigate = useNavigate();
   const [inputPhoneNumber, setInputPhoneNumber] = React.useState();
-  const [confirmationToken, setConfirmationToken] =
+  const [confirmationResult, setConfirmationResult] =
     React.useState<ConfirmationResult>();
   const [pin, setPin] = React.useState<string>();
   const [loginState, setLoginState] = React.useState<LOGIN_STATE>(
@@ -48,7 +48,7 @@ const PhoneLogin = React.memo(() => {
     }
     try {
       const response = await setupRecaptcha(inputPhoneNumber);
-      setConfirmationToken(response);
+      setConfirmationResult(response);
     } catch (error) {
       toast.error("Wrong OTP");
     }
@@ -57,8 +57,8 @@ const PhoneLogin = React.memo(() => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if (!confirmationToken || !pin) return;
-      await confirmationToken.confirm(pin);
+      if (!confirmationResult || !pin) return;
+      await confirmationResult.confirm(pin);
       navigate("/");
     } catch (error) {
       toast.error("Wrong OTP! Please try again");
