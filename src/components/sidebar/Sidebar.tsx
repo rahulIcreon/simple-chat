@@ -1,14 +1,13 @@
 import React from "react";
 import Navbar from "../navbar/Navbar";
-import SearchBar from "../searchBar/SearchBar";
-import MessageThreadList from "../messageThreadList/MessageThreadList";
+import Chats from "../chats/Chats";
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <Navbar />
       {/* <SearchBar /> */}
-      <MessageThreadList />
+      <Chats />
     </div>
   );
 };

@@ -4,6 +4,7 @@
   background-color: $light-bg;
   color: $light-text-color;
   .home {
+    background-color: $light-chat-bg;
     .header {
       background-color: $light-chat-bg-2;
     }
@@ -38,57 +39,58 @@
 }
 
 .home {
-  height: 100vh;
+  height: 95.5vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 20px 0;
   .header {
     height: 50px;
-    width: 100%;
+    width: 90%;
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: space-between;
+    .logo {
+      font-weight: bold;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      button {
+        background-color: #5d5b8d;
+        color: #ddddf7;
+        border: none;
+        padding: 10px;
+        font-size: 10px;
+        cursor: pointer;
+      }
+      .user {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        img {
+          height: 40px;
+          width: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+    }
   }
   .container {
-    width: 100%;
+    width: 90%;
     height: 100%;
     display: flex;
     overflow: hidden;
     .sidebar {
-      flex: 0.8;
+      flex: 0.6;
       // background-color: #3e3c61;
-      .navbar {
-        display: flex;
-        background-color: $light-sidebar-bg;
-        border-bottom: 1px solid $light-chat-bg-2;
-        padding: 10px;
-        height: 50px;
-        justify-content: space-between;
-        align-items: center;
-        // color: #ddddf7;
-        .logo {
-          font-weight: bold;
-        }
-        .user {
-          display: flex;
-          gap: 10px;
-          img {
-            // background-color: #ddddf7;
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
-          button {
-            background-color: #5d5b8d;
-            color: #ddddf7;
-            border: none;
-            font-size: 10px;
-            cursor: pointer;
-          }
-        }
-      }
+      padding-top: 40px;
+
       .search {
         border-bottom: 1px solid gray;
         .searchForm {
@@ -103,6 +105,9 @@
             }
           }
         }
+      }
+      .onlineUsersWrapper {
+        margin-top: 24px;
       }
       .userChat {
         padding: 10px;
@@ -135,6 +140,94 @@
     .messageThreadsContainer {
       flex: 2;
       .chatInfo {
+        height: 40px;
+        background-color: $light-sidebar-bg;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        color: $light-text-color;
+        .chatIcons {
+          display: flex;
+          gap: 16px;
+          cursor: pointer;
+        }
+      }
+      .messages {
+        background-color: #ddddf7;
+        padding: 10px;
+        height: calc(100% - 160px);
+        .message {
+          display: flex;
+          gap: 20px;
+          .messageInfo {
+            display: flex;
+            flex-direction: column;
+            color: gray;
+            margin-bottom: 20px;
+            img {
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+          }
+          .messageContent {
+            max-width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            p {
+              background-color: #fff;
+              padding: 10px 20px;
+              border-radius: 0 15px 15px 15px;
+              max-width: max-content;
+            }
+          }
+          &.owner {
+            flex-direction: row-reverse;
+            .messageContent {
+              align-items: flex-end;
+              p {
+                background-color: #5d5b8d;
+                color: white;
+                border-radius: 15px 0 15px 15px;
+              }
+            }
+          }
+        }
+      }
+      .input {
+        height: 50px;
+        background-color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        input {
+          width: 90%;
+          border: none;
+          outline: none;
+          color: #2f2d52;
+          font-size: 18px;
+          &::placeholder {
+            color: lightgray;
+          }
+        }
+        .send {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          svg {
+            cursor: pointer;
+          }
+          button {
+            border: none;
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #5d5b8d;
+            cursor: pointer;
+          }
+        }
       }
     }
   }

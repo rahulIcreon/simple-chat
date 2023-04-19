@@ -1,24 +1,13 @@
 import React from "react";
 import Sidebar from "../components/sidebar/Sidebar";
 import "./styles.scss";
-import MessageThreads from "../components/messageThread/MessageThread";
-import { FormControlLabel } from "@mui/material";
-import SwitchButton from "../components/themeButton/Switch";
-import { THEME_MODE, useTheme } from "../providers/theme";
+import MessageThreads from "../components/chat/Chat";
+import Header from "../components/header/Header";
 
 const Home = () => {
-  const theme = useTheme();
-
   return (
     <div className="home">
-      <div className="header">
-        <span> Light</span>
-        <FormControlLabel
-          control={<SwitchButton sx={{ m: 1 }} defaultChecked />}
-          label="Dark"
-          onChange={theme.toggleTheme}
-        />
-      </div>
+      <Header />
       <div className="container">
         <Sidebar />
         <MessageThreads />

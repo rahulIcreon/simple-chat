@@ -31,6 +31,7 @@ export const createUserDocument = async (user: User) => {
         photoURL,
         createdAt: new Date(),
       });
+      await setDoc(doc(db, "userChats", uid), {});
       console.log("Document set");
     } catch (error) {
       console.log("Could not set the Document: ", error);

@@ -11,7 +11,7 @@ import PhoneInput from "react-phone-number-input";
 import ReactCodeInput from "react-code-input";
 import { useNavigate } from "react-router-dom";
 
-enum LOGIN_STATE {
+enum OTP_STATE {
   SEND_OTP = "SEND_OTP",
   VERIFY_OTP = "VERIFY_OTP",
 }
@@ -21,10 +21,10 @@ const PhoneLogin = React.memo(() => {
   const navigate = useNavigate();
   const [inputPhoneNumber, setInputPhoneNumber] = React.useState();
   const [confirmationResult, setConfirmationResult] =
-    React.useState<ConfirmationResult>();
+    React.useState<ConfirmationResult | null>();
   const [pin, setPin] = React.useState<string>();
-  const [loginState, setLoginState] = React.useState<LOGIN_STATE>(
-    LOGIN_STATE.SEND_OTP
+  const [loginState, setLoginState] = React.useState<OTP_STATE>(
+    OTP_STATE.SEND_OTP
   );
   const pinRef = React.useRef() as React.MutableRefObject<ReactCodeInput>;
 
@@ -40,10 +40,10 @@ const PhoneLogin = React.memo(() => {
   };
 
   const onSendPin = async () => {
-    setLoginState(LOGIN_STATE.VERIFY_OTP);
+    setLoginState(OTP_STATE.VERIFY_OTP);
     if (!inputPhoneNumber) {
       toast.error("Please enter phone number");
-      setLoginState(LOGIN_STATE.SEND_OTP);
+      setLoginState(OTP_STATE.SEND_OTP);
       return;
     }
     try {
@@ -62,7 +62,7 @@ const PhoneLogin = React.memo(() => {
       navigate("/");
     } catch (error) {
       toast.error("Wrong OTP! Please try again");
-      setLoginState(LOGIN_STATE.SEND_OTP);
+      setLoginState(OTP_STATE.SEND_OTP);
     }
   };
   const onPhoneInputChange = (value: any) => {
@@ -84,14 +84,14 @@ const PhoneLogin = React.memo(() => {
         international
       />
       <div id="recaptcha-container" />
-      {loginState === LOGIN_STATE.SEND_OTP ? (
+      {loginState === OTP_STATE.SEND_OTP ? (
         <button type="button" onClick={onSendPin}>
           Send OTP
         </button>
       ) : (
         ""
       )}
-      {loginState === LOGIN_STATE.VERIFY_OTP ? (
+      {loginState === OTP_STATE.VERIFY_OTP ? (
         <>
           <div className="loginPin">
             <ReactCodeInput
