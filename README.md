@@ -1,4 +1,4 @@
-DEMO: [https://master.d3hl5ldwnqwt6c.amplifyapp.com](https://master.d3hl5ldwnqwt6c.amplifyapp.com)
+DEMO: [https://master.d2qjwjrq4hdu8z.amplifyapp.com](https://master.d2qjwjrq4hdu8z.amplifyapp.com)
 ### `npm start`
 =======================================================
 Latest Updates:
